@@ -1,13 +1,14 @@
 .button-container {
-	margin: 10px;
+	margin-bottom: 10px;
+	padding-right: 10px;
+	width: 100%;
+	overflow: hidden;
 }
 
-
 .table-container {
-	border: 2px solid #008080;
+	border: 2px solid #5F9EA0;
 	max-width: 100%;
 	margin: auto;
-	overflow: auto;
 }
 
 .table-container table {
@@ -16,7 +17,7 @@
 }
 
 .table-container th {
-	background: #008080;
+	background: #5F9EA0;
 	color: white;
 	padding: 10px;
 }

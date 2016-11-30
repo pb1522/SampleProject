@@ -5,20 +5,20 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-	<div class="main-container">
-		<div class="login-container">
-			<h2>Login</h2>
-			<div>
+	<div class="login-main-container">
+		<div class="login-container elem-shadow">
+			<h1 class="title-text">Login</h1>
+			<div class="username-div">
 				<label>Username: </label>
-				<input data-bind="value: username">
+				<input data-bind="value: username" class="input-medium">
 			</div>
-			<div>
+			<div class="password-div">
 				<label>Password: </label>
-				<input data-bind="value: password">
+				<input data-bind="value: password" class="input-medium">
 			</div>
-			<div class="button-container">
-				<button data-bind="click: login" class="button-standard">OK</button>
-				<a href="#">Forgot&nbsp;Password</a>
+			<div class="login-button-container">
+				<button data-bind="click: login" class="button-common">OK</button>
+				<a href="#" class="small-font">Forgot&nbsp;Password</a>
 			</div>
 		</div>
 	</div>

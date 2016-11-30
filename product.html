@@ -8,15 +8,23 @@
 <body>
 	<div class="main-container">
 
-		<h1>Products Inventory</h1>
+		<h1 class="title-text">Products Inventory</h1>
 
 		<hr>
 
 		<div class="button-container">
-			<button data-bind="click: saveChange, visible: isEdited" class="button-common">Save</button>
-			<button data-bind="click: cancelChange, visible: isEdited" class="button-common">Cancel</button>
-			<button href="#" data-bind="click: addProduct, visible: isEdited() == false" 
-			class="button-common">Add</button>
+			<div data-bind="visible: isEdited" style="float:right;">
+				<button data-bind="click: saveChange" class="button-common">Save</button>
+				<button data-bind="click: cancelChange" class="button-common">Cancel</button>
+			</div>
+			<div data-bind="visible: isEdited() == false">
+				<label>Name: </label>
+					<input type="text" name="productName" id="productName" class="input-tall" style="width:23%">
+				<label>Description: </label>&nbsp;
+					<input type="text" name="productDescription" id="productDesc" class="input-tall" style="width:50%">
+				<button href="#" data-bind="click: addProduct" class="button-common">Add</button>
+			</div>
+
 		</div>
 
 		<div class="table-container elem-shadow clear-fix">
@@ -47,7 +55,6 @@
 			</table>
 		<div>
 	<div>
-
 
 	<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="lib/jquery-ui.js"></script>
