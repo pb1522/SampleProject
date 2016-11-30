@@ -4,8 +4,8 @@
 
 
 .table-container {
-	border: 2px solid gray;
-	max-width: 800px;
+	border: 2px solid #008080;
+	max-width: 100%;
 	margin: auto;
 	overflow: auto;
 }
@@ -16,7 +16,7 @@
 }
 
 .table-container th {
-	background: teal;
+	background: #008080;
 	color: white;
 	padding: 10px;
 }
@@ -27,7 +27,7 @@
 
 .table-container tbody tr {
 	cursor: pointer;
-	padding: 10px;
+
 }
 
 .table-container tbody tr:nth-child(odd) {
@@ -39,7 +39,19 @@
 }
 
 .table-container tbody td {
-	padding: 5px;
+	padding: 0 10px;
+}
+
+.table-container tbody td span {
+	display: block;
+	padding: 10px 0;
+}
+
+.table-container tbody td input {
+	height: 30px;
+	width: 90%;
+	border: 1.5px solid blue;
+	padding: 0 2px;
 }
 
 
