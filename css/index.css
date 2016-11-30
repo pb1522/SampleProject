@@ -1,11 +1,39 @@
 body {
 	background: beige;
+	font-size: 1em;
 }
 
-.button-standard {
-	padding: 10px 20px;
+.clear-fix{
+	clear: both;
+}
+
+.small-font {
+	font-family: "Trebuchet MS", Helvetica, Sans-serif;;
+	font-size: .7em;
+}
+
+.button-common {
+	border: 0;
+	padding: 5px 20px;
 	background: teal;
 	color: white;
+	outline: none;
+	cursor: pointer;
+	border: 2px solid gray;
+}
+
+.button-common:active {
+	transform: translate(2px, 2px);
+	box-shadow: 1px 1px 10px 0px gray;
+	
+}
+
+.button-common:hover {
+	box-shadow: 5px 5px 10px 0px gray, 2px 2px 10px 2px gray;
+}
+
+.elem-shadow {
+	box-shadow: 5px 5px 10px 0px gray, 5px 5px 20px 2px gray;
 }
 
 .main-container {

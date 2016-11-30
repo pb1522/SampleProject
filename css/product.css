@@ -1,8 +1,48 @@
-body {
-	background: beige;
-
+.button-container {
+	margin: 10px;
 }
+
 
 .table-container {
 	border: 2px solid gray;
+	max-width: 800px;
+	margin: auto;
+	overflow: auto;
 }
+
+.table-container table {
+	width: 100%;
+	text-align: center;
+}
+
+.table-container th {
+	background: teal;
+	color: white;
+	padding: 10px;
+}
+
+.table-container tbody {
+	background: white;
+}
+
+.table-container tbody tr {
+	cursor: pointer;
+	padding: 10px;
+}
+
+.table-container tbody tr:nth-child(odd) {
+	background: lightgray;
+}
+
+.table-container tbody tr:hover {
+	background: lightblue;
+}
+
+.table-container tbody td {
+	padding: 5px;
+}
+
+
+
+
+

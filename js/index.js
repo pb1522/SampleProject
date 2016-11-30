@@ -7,28 +7,21 @@ $(document).ready(function() {
 function LoginViewModel() {
 	var self = this;
 
-	//self.username = ko.observable();
-	//self.password = ko.observable();
+	self.username = ko.observable();
+	self.password = ko.observable();
 
 	self.login = function() {
 		
-		//validateUser(self.username, self.password);
-		window.open('http://localhost/product.html', "_self");
+		validateUser(self.username(), self.password());
 	};
 
 }
 
-function validateUser() {
-	/*var user = { username: "test", password: "test"};
+function validateUser(username, password) {
+	var validUsers = { username: "test", password: "test"};
 
-	var validUserName = user.username;
-	var validPass = user.password;
-
-	var user = username;
-	var pass = password;*/
-
-	//if(user == validUserName) {
+	if(username == validUsers.username) {
 		window.open('http://localhost/product.html', "_self");
 
-	//}
+	}
 }
