@@ -1,0 +1,31 @@
+body {
+	background: beige;
+}
+
+.button-standard {
+	padding: 10px 20px;
+	background: teal;
+	color: white;
+}
+
+.main-container {
+	max-width: 500px;
+	margin: auto;
+}
+
+.login-container {
+	border: 2px solid teal;
+	margin: 50px;
+	padding: 50px;
+	overflow: hidden;
+}
+
+.login-container div {
+	margin: 20px;
+}
+
+.button-container {
+	float: right;
+}
+
+
