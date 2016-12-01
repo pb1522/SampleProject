@@ -11,12 +11,10 @@ $(document).ready(function() {
 
 function ProductViewModel() {
 	var self = this;
+	
+	self.categoryList = ko.observableArray( initCategoryList() );
 
-	self.categoryList = ko.observableArray(["Gadgets", "Kitchen Utensils", "Jewelries", "Clothing"]);
-
-	self.prodList = ko.observableArray($.map(getProductList(), function(item) {
-		return new Product(item);
-	}));
+	self.selectedCategory = ko.observable(self.categoryList()[2]);
 
 	self.isEdited = ko.observable(false);
 
@@ -26,12 +24,12 @@ function ProductViewModel() {
 	};
 
 	self.saveChange = function() {
-		processChange(self.prodList, SAVE_CHANGE);
+		processChange( SAVE_CHANGE );
 		self.isEdited(false);
 	};
 
 	self.cancelChange = function() {
-		processChange(self.prodList, CANCEL_CHANGE);
+		processChange( CANCEL_CHANGE );
 		self.isEdited(false);
 	};
 
@@ -41,15 +39,15 @@ function ProductViewModel() {
 	};
 
 	self.deleteProduct = function(item) {
-		self.prodList.remove(item);
+		self.selectedCategory().prodList.remove(item);
 	};
+}
 
-	self.refreshList = function() {
-		//self.prodList().valueHasMutated();
-		var data = self.prodList().slice(0);
-    	self.prodList([]);
-    	self.prodList(data);
-	}
+function Category(data) {
+	var self = this;
+
+	self.category = ko.observable(data.category);
+	self.prodList = ko.observableArray(data.prodList);
 }
 
 function Product(data) {
@@ -70,16 +68,43 @@ function Product(data) {
 	self.newBackUp = function() {
 		self.backUp = new BackUpItem(self, SAVE_CHANGE);
 	};
+}
+
+function BackUpItem(data, transactType ) {
+	this.prodId = transactType == ORIGINAL_DATA ? data.prodId : data.prodId();
+	this.prodName = transactType == ORIGINAL_DATA ? data.prodName : data.prodName(); 
+	this.prodDesc = transactType == ORIGINAL_DATA ? data.prodDesc : data.prodDesc();
+}
+
+function initCategoryList() {
+	var categoryOptions = ["Gadgets", "Books", "Jewelries", "Clothing"];
+	var categoryList = [];
+
+
+	for(var i = 0; i < categoryOptions.length; i++) {
+		var category = categoryOptions[i];
+		var prodList = $.map(getProductList(category), function(item) {
+							return new Product(item);
+						});
+
+		var categoryObj = { category: category,
+							prodList: prodList};
+
+		categoryList[i] = new Category( categoryObj );
+	}
+
+	return categoryList;
+
 
 }
 
-function getProductList() {
+function getProductList(category) {
 	var prodArr = [];
 
 	for(var i = 0; i < 10; i++) {
 		var prodObj = { prodId: i, 
-						prodName: "Test Product - " + i, 
-						prodDesc: "A test product for a category - " + i
+						prodName: "Prod" + i + " - " + category,
+						prodDesc: "A test product for category " + category + " - " + i
 						};
 
 		prodArr[i] = prodObj;
@@ -88,23 +113,21 @@ function getProductList() {
 	return prodArr;
 }
 
-function processChange(arrList, event) {
-	for(var i = 0; i < arrList().length; i++) {
-		arrList()[i].isEditable(false);
+function processChange(event) {
+	var prodList = productViewModel.selectedCategory().prodList();
+
+	for(var i = 0; i < prodList.length; i++) {
+		var product = prodList[i];
+		product.isEditable(false);
 
 		if(event == CANCEL_CHANGE) {
-			arrList()[i].restoreProduct();
+			product.restoreProduct();
 		} else {
-			arrList()[i].newBackUp();
+			product.newBackUp();
 		}
 	}
 }
 
-function BackUpItem(data, transactType ) {
-	this.prodId = transactType == ORIGINAL_DATA ? data.prodId : data.prodId();
-	this.prodName = transactType == ORIGINAL_DATA ? data.prodName : data.prodName(); 
-	this.prodDesc = transactType == ORIGINAL_DATA ? data.prodDesc : data.prodDesc();
-}
 
 function restoreItem( data ) {
 	data.prodId(data.backUp.prodId);
@@ -115,16 +138,19 @@ function restoreItem( data ) {
 function addNewProduct() {
 	var prodName = $("#productName").val();
 	var prodDesc = $("#productDesc").val();
+	var prodList = productViewModel.selectedCategory().prodList;
 
 	if(prodName == "" || prodDesc == "" ) {
 		return;
 	}
 
-	var productId = productViewModel.prodList().length;
+	var lastId = prodList()[prodList().length - 1].prodId();
+
+	var productId = ++lastId;
 	var newProduct = { prodId: productId, prodName: prodName, prodDesc: prodDesc};
 
-	productViewModel.prodList().push(new Product(newProduct));
-	productViewModel.refreshList();
+	prodList().push(new Product(newProduct));
+	prodList.valueHasMutated();
 }
 
 function resetInput() {

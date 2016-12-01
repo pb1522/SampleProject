@@ -55,6 +55,20 @@
 	padding: 0 2px;
 }
 
+.select-category {
+	height:30px;
+	padding:5px;
+	min-width: 12%;
+	margin-right: 15px;
+}
+
+.add-prod-name {
+	width:19%;
+}
+
+.add-prod-desc {
+	width:33%;
+}
 
 
 
