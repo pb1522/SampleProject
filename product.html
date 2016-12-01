@@ -18,10 +18,11 @@
 				<button data-bind="click: cancelChange" class="button-common">Cancel</button>
 			</div>
 			<div data-bind="visible: isEdited() == false">
+				<label>Category: </label><select data-bind="options: categoryList" style="height:30px;padding:5px"></select>
 				<label>Name: </label>
-					<input type="text" name="productName" id="productName" class="input-tall" style="width:23%">
+					<input type="text" name="productName" id="productName" class="input-tall" style="width:19%">
 				<label>Description: </label>&nbsp;
-					<input type="text" name="productDescription" id="productDesc" class="input-tall" style="width:50%">
+					<input type="text" name="productDescription" id="productDesc" class="input-tall" style="width:33%">
 				<button href="#" data-bind="click: addProduct" class="button-common">Add</button>
 			</div>
 

@@ -5,15 +5,14 @@ var ORIGINAL_DATA = "original_data";
 var productViewModel = new ProductViewModel();
 
 $(document).ready(function() {
-
 		
 	ko.applyBindings(productViewModel);
-
-	$("#addProductDialog").dialog({autoOpen: false});
 });
 
 function ProductViewModel() {
 	var self = this;
+
+	self.categoryList = ko.observableArray(["Gadgets", "Kitchen Utensils", "Jewelries", "Clothing"]);
 
 	self.prodList = ko.observableArray($.map(getProductList(), function(item) {
 		return new Product(item);
